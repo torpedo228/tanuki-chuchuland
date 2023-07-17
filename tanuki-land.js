@@ -1,70 +1,84 @@
 window.addEventListener("load", init, false);
 
-let lightBox = document.getElementById("lightBox");
-let userName = document.getElementById("userName");
-let profile = document.getElementById("profile");
+window.addEventListener('mousedown', function (e) {
+  const audio = document.querySelector(`audio[data-key="87"]`);
+  if (!audio) return;
+  audio.currentTime = 0;
+  audio.play();
 
-function showLightBox() {
-  let spanLogin = document.getElementById("spanLogin");
+  const clickMe = document.getElementById("clickMe");
+  clickMe.innerHTML = "啾啾啾";
 
-  if ((spanLogin.innerText) == "登入") {
-    lightBox.style.display = "block";
+  window.addEventListener('mouseup', function (e) {
 
-  } else {
+    clickMe.innerHTML = "點我!";
+  })
+
+
+})
+
+
+function showLoginPrompt() {
+
+
+  if (login.innerText == "登入") {
+    loginPrompt.style.display = "block";
+
+  } else if (login.innerText == "登出") {
+    profile.src = "./img/禿頭海豹左看.png";
     userName.innerText = "";
-    profile.src = "./狸貓放鬆.png";
-    spanLogin.innerText = "登入";
-    logo.style.display = "block";
+    login.innerText = "登入"
+    loginPrompt.style.display = "none";
+    welcome.style.display = "flex";
     logoInPage.style.display = "none";
   }
-}
-
-function checkLoginData() {
-  let userId = document.getElementById("userId");
-  let userPsw = document.getElementById("userPsw");
-
-  if (userId.value == "tanukijr" && userPsw.value == "878787") {
-    profile.src = "./狸貓兔子.png";
-    userName.innerText = "二狸貓";
-    spanLogin.innerText = "登出";
-    resetAndCloseFormAndShowLoginPage();
-
-    //帳號 tanukijr , 密碼 878787
-
-  } else {
-
-    const fail = document.createElement("span");
-    const failMessage = document.createTextNode("登入失敗!");
-    fail.innerHTML = "<br/>"
-    fail.appendChild(failMessage);
-
-    document.getElementById("passwordInput").appendChild(fail);
-
-    // document.getElementById("fail").innerHTML = "<br>登入失敗!";
-  }
 
 }
 
-function closeLightBox() {
-  lightBox.style.display = "none";
-}
 
-function resetAndCloseFormAndShowLoginPage() {
+function resetAndCloseLoginPromptAndShowLoginPage() {
+  loginPrompt.style.display = "none";
+
   let form = document.getElementsByClassName("input");
   for (let i = 0; i < form.length; i++) {
     form[i].reset();
-    lightBox.style.display = "none";
-    logo.style.display = "none";
-    logoInPage.style.display = "block";
+  }
+
+}
+
+function checkLoginData() {
+  let welcome = document.getElementById("welcome");
+  let logoInPage = document.getElementById("logoInPage");
+
+
+  if (userId.value == "lazyTanupig" && userPsw.value == "fatfatfat") {
+    resetAndCloseLoginPromptAndShowLoginPage();
+    profile.src = "./img/狸貓側邊的背影.png";
+    userName.innerText = "狸貓闡釋者";
+    login.innerText = "登出";
+    logoInPage.style.display = "flex";
+    welcome.style.display = "none";
+
+    //帳號 lazyTanupig , 密碼 fatfatfat
+
+
+  } else {
+    window.alert("提示:懶惰狸貓豬 肥嘟嘟!")
   }
 }
 
-
 function init() {
-  let btnLogin = document.getElementById("btnLogin");
-  let btnCancel = document.getElementById("btnCancel");
+  let login = document.getElementById("login");
+  let checkLoginDataBtn = document.getElementById("checkLoginDataBtn");
+  let closeLoginPrompt = document.getElementById("closeLoginPrompt");
 
-  spanLogin.addEventListener("click", showLightBox);
-  btnLogin.addEventListener("click", checkLoginData);
-  btnCancel.addEventListener("click", closeLightBox);
+
+
+
+  login.addEventListener("click", showLoginPrompt);
+
+  checkLoginDataBtn.addEventListener("click", checkLoginData);
+
+  closeLoginPrompt.addEventListener("click", resetAndCloseLoginPromptAndShowLoginPage);
+
 };

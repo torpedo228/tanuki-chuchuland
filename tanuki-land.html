@@ -5,65 +5,71 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>狸貓新樂園</title>
-  <link rel="stylesheet" href="./tanuki-land.css">
+  <link rel="icon" href="./tanuki.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="./tanuki.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="./_css/tanuki-land.css">
   <script type='text/javascript' src='./tanuki-land.js'>
   </script>
+  <script src="https://kit.fontawesome.com/5dbdfdb95d.js" crossorigin="anonymous"></script>
+  <title>狸貓星樂園</title>
 </head>
 
 <body>
-  <h1>狸貓新樂園</h1>
-  <div id="logo">
-    <img src="./狸貓兔子.png" alt="">
+  <div id="welcome">
+    <h2 id="clickMe">點我!</h2>
+    <img id="clickMeImg" data-key="87" src="./img/狸貓兔子.png" alt="">
   </div>
+
+  <audio data-key="87" src="./chuchu.mp3"></audio>
 
   <div id="logoInPage">
-    <h2>歡迎登入!</h2>
-    <img src="./狸貓飛空貓嘴.png" alt="">
+    <h2>啾啾啾!</h2>
+    <img src="./img/狸貓飛空貓嘴.png" alt="">
   </div>
 
-  <div id="lightBox">
-    <table id="tableLogin">
-      <tr>
-        <td class="title">帳號</td>
-        <td>
-          <form class="input">
-            <input type="text" name="userId" id="userId">
-          </form>
-        </td>
-      </tr>
-      <tr>
-        <td class="title">密碼</td>
-        <td>
-          <form class="input" id="passwordInput">
-            <input type="password" name="userPsw" id="userPsw">
+  <div class="header">
+    <div class="logo-wrap">
 
-            <!-- <span id="fail"></span> -->
-          </form>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2" id="btn">
-          <input type="button" id="btnLogin" value="登入">
-          <input type="button" id="btnCancel" value="取消">
-        </td>
-      </tr>
-    </table>
-  </div>
+      <img id="logo" src="./img/禿頭海豹呆滯.png">
+      <span>狸貓星樂園</span>
+      <!-- <img id="logo-re" src="./img/禿頭海豹呆滯.png"> -->
+    </div>
 
 
-  <div id="wrapper">
-    <img id="profile" src="./狸貓放鬆.png">
-    <div id="bar">
+    <div class="login-wrap">
+
+      <img id="profile" src="./img/狸貓放鬆.png">
       <span id="userName">&nbsp;</span>
-      <span id="spanLogin">登入</span>
+
+      <button id="login" @click=showLoginPrompt>登入</button>
+    </div>
+
+  </div>
+
+  <div id="loginPrompt">
+    <div class="login-container">
+      <div id="closeLoginPrompt" @click="resetAndCloseLoginPromptAndShowLoginPage"><i class="fa-solid fa-xmark"></i>
+      </div>
+      <img src="./img/禿頭海豹吸血鬼.png" alt="" />
+
+
+      <div class="login">
+        <label for="userId">帳號：</label>
+        <input id="userId" class="form" type="text" value="lazyTanupig" />
+        <br />
+        <label for="userPsw">密碼：</label>
+        <input id="userPsw" class="form" type="password" value="fatfatfat" />
+        <br />
+      </div>
+
+      <div class="btn-wrap">
+        <button id="checkLoginDataBtn" @click="checkLoginData" class="login-btn">登入</button>
+        <button class="suprise-btn"><a id="surpriseBtn" href="https://www.buymeacoffee.com/tanuki.jr" target="_blank">狸貓叫你點一下~</a></button>
+      </div>
+
     </div>
   </div>
 
-
-  <script>
-
-  </script>
 
 </body>
 
